@@ -268,7 +268,7 @@ textarea {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 80px 0 140px;
+  padding: 80px 0 240px;
   background: linear-gradient(165deg, var(--lagoon-dd) 0%, var(--lagoon-d) 55%, var(--lagoon) 100%);
   color: #fff;
 }
@@ -277,29 +277,43 @@ textarea {
   inset: 0;
   pointer-events: none;
 }
-.hero__sun {
+.hero__scene {
   position: absolute;
-  right: -120px;
-  top: -140px;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, var(--gold), var(--coral) 55%, transparent 70%);
-  opacity: 0.55;
-  filter: blur(6px);
-}
-.hero__waves {
-  position: absolute;
-  bottom: -1px;
   left: 0;
+  bottom: -1px;
   width: 100%;
-  height: 120px;
+  height: 340px;
 }
-.hero__waves path:first-child {
-  fill: rgba(250, 246, 239, 0.18);
+.scene-ship {
+  animation: bob 7s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
 }
-.hero__waves path:last-child {
+.wave {
+  animation: drift 9s ease-in-out infinite alternate;
+}
+.wave--b {
+  animation-duration: 12s;
+  animation-direction: alternate-reverse;
+}
+.wave--sand {
   fill: var(--sand);
+  animation-duration: 15s;
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-4px) rotate(-0.5deg);
+  }
+}
+@keyframes drift {
+  to {
+    transform: translateX(-80px);
+  }
+}
+@media (max-width: 700px) {
+  .hero__scene {
+    height: 250px;
+  }
 }
 .hero__grid {
   position: relative;
@@ -1176,7 +1190,7 @@ h2 {
     padding: 72px 0;
   }
   .hero {
-    padding: 48px 0 110px;
+    padding: 48px 0 190px;
   }
   .cards,
   .steps,

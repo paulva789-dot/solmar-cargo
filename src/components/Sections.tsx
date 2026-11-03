@@ -3,6 +3,7 @@ import { CONTACT, PARTNERS, REGIONS, SERVICES, STATS, WHY_ICONS } from "../data"
 import { useCountUp, useInView } from "../hooks";
 import { useI18n } from "../i18n";
 import type { OpenQuote } from "../types";
+import { HeroScene } from "./HeroScene";
 import { Icon } from "./Icon";
 import { Tracker } from "./Tracker";
 
@@ -30,11 +31,7 @@ export function Hero({ onQuote }: { onQuote: OpenQuote }) {
   return (
     <section id="home" className="hero">
       <div className="hero__bg" aria-hidden="true">
-        <div className="hero__sun" />
-        <svg className="hero__waves" viewBox="0 0 1440 240" preserveAspectRatio="none">
-          <path d="M0 120c240 60 480 60 720 0s480-60 720 0v120H0z" />
-          <path d="M0 160c240 50 480 50 720 0s480-50 720 0v80H0z" />
-        </svg>
+        <HeroScene />
       </div>
       <div className="container hero__grid">
         <div>

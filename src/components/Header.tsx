@@ -33,15 +33,6 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
 
   return (
     <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
-      <div className="ticker" aria-label={t.announcements}>
-        <div className="ticker__track">
-          {[...t.ticker, ...t.ticker].map((s, i) => (
-            <span key={i} aria-hidden={i >= t.ticker.length}>
-              {s}
-            </span>
-          ))}
-        </div>
-      </div>
       <div className="container header__bar">
         <a href="#home" className="brand" aria-label={t.brandAria}>
           <span className="brand__mark" aria-hidden="true">
@@ -77,8 +68,8 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
             onChange={(e) => isLang(e.target.value) && setLang(e.target.value)}
           >
             {LANGS.map((l) => (
-              <option key={l.code} value={l.code}>
-                {l.label} — {l.native}
+              <option key={l.code} value={l.code} title={l.native}>
+                {l.label}
               </option>
             ))}
           </select>
@@ -97,6 +88,15 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
             <span />
             <span />
           </button>
+        </div>
+      </div>
+      <div className="ticker" aria-label={t.announcements}>
+        <div className="ticker__track">
+          {[...t.ticker, ...t.ticker].map((s, i) => (
+            <span key={i} aria-hidden={i >= t.ticker.length}>
+              {s}
+            </span>
+          ))}
         </div>
       </div>
     </header>
