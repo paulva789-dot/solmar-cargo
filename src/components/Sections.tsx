@@ -227,7 +227,7 @@ export function Reach() {
   );
 }
 
-const PEOPLE = ["Michael R. Carson", "Jennifer L. Walsh", "David T. Nguyen"];
+const PEOPLE = ["Elena Marsh", "Kofi Mensah", "Hannah Brooks"];
 
 export function Testimonials() {
   const { t } = useI18n();
@@ -333,7 +333,7 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer__grid">
         <div>
-          <p className="footer__brand">Global Tropical Cargo</p>
+          <p className="footer__brand">SolMar Cargo</p>
           <p className="footer__muted">{f.blurb}</p>
           <div className="certs">
             <span>ISO Certified</span>
@@ -382,6 +382,7 @@ export function Footer() {
       </div>
       <div className="container footer__base">
         <span>{f.rights(new Date().getFullYear())}</span>
+        <span>{f.demo}</span>
         <span>
           <a href="#home">{f.privacy}</a> · <a href="#home">{f.terms}</a>
         </span>

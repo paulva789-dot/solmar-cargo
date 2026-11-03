@@ -17,7 +17,7 @@ export function Floating() {
         </button>
         <a
           className="fab__wa"
-          href="https://wa.me/15592132902"
+          href="https://wa.me/15550100177"
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t.floating.whatsapp}

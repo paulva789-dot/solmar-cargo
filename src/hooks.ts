@@ -59,7 +59,7 @@ export type Theme = "light" | "dark";
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     try {
-      const saved = localStorage.getItem("gtc-theme");
+      const saved = localStorage.getItem("sm-theme");
       if (saved === "light" || saved === "dark") return saved;
     } catch {
       /* storage unavailable */
@@ -70,7 +70,7 @@ export function useTheme() {
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try {
-      localStorage.setItem("gtc-theme", theme);
+      localStorage.setItem("sm-theme", theme);
     } catch {
       /* ignore */
     }

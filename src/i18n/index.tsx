@@ -9,7 +9,7 @@ export type { Dict, Lang };
 
 export const DICTS: Record<Lang, Dict> = { en, es, fr };
 
-const KEY = "gtc-lang";
+const KEY = "sm-lang";
 
 export const isLang = (v: unknown): v is Lang => v === "en" || v === "es" || v === "fr";
 

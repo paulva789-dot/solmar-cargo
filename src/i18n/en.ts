@@ -3,8 +3,8 @@ import type { Dict } from "./dict";
 export const en: Dict = {
   locale: "en-US",
   meta: {
-    title: "Global Tropical Cargo — Moving Cargo Across Every Horizon",
-    description: "Global Tropical Cargo — freight forwarding, warehousing and supply chain across 85+ countries.",
+    title: "SolMar Cargo — Sun, sea and steady delivery",
+    description: "SolMar Cargo — freight forwarding, warehousing and supply chain across 85+ countries.",
   },
   skip: "Skip to content",
   language: "Language",
@@ -14,7 +14,7 @@ export const en: Dict = {
   menuClose: "Close menu",
   primaryNav: "Primary",
   announcements: "Announcements",
-  brandAria: "Global Tropical Cargo home",
+  brandAria: "SolMar Cargo home",
   nav: { home: "Home", services: "Services", tools: "Tools", about: "About Us", contact: "Contact", track: "Track Shipment", quote: "Get a Quote" },
   ticker: [
     "Real-time tracking in 50+ countries",
@@ -25,10 +25,10 @@ export const en: Dict = {
   hours: "Mon–Fri, 8:00am–6:00pm",
 
   hero: {
-    pill: "Trusted logistics partner · HQ Arizona",
-    titleA: "Moving cargo across ",
-    titleEm: "every horizon.",
-    lead: "Freight, shipping and supply chain solutions across North America, Europe, Asia and beyond — serving 85+ countries from our headquarters in Arizona.",
+    pill: "Trusted logistics partner · HQ Florida",
+    titleA: "Sun, sea and ",
+    titleEm: "steady delivery.",
+    lead: "Freight, shipping and supply chain solutions across North America, Europe, Asia and beyond — serving 85+ countries from our headquarters in Florida.",
     cta: "Get a Free Quote",
     services: "Our Services",
     facts: [
@@ -51,7 +51,7 @@ export const en: Dict = {
     copyPrompt: "Copy this link",
     demo: "Demo data — connect a tracking API for live status.",
     stages: [
-      { label: "Cargo received", place: "Phoenix, AZ" },
+      { label: "Cargo received", place: "Miami, FL" },
       { label: "Customs cleared", place: "Port of Long Beach, CA" },
       { label: "In transit", place: "Pacific Transit" },
       { label: "Out for delivery", place: "Destination Hub" },
@@ -127,7 +127,7 @@ export const en: Dict = {
   about: {
     eyebrow: "Why choose us",
     title: "Logistics with people on the other end of the line.",
-    lead: "Headquartered in Arizona, open Mon–Fri, 8:00am–6:00pm. We pair a global agent network with a dedicated account manager so nothing gets lost between continents.",
+    lead: "Headquartered in Florida, open Mon–Fri, 8:00am–6:00pm. We pair a global agent network with a dedicated account manager so nothing gets lost between continents.",
     badge: "years moving freight",
     why: [
       { title: "Cargo Insurance & Safety", text: "Every shipment is insured against loss, damage and theft, and moved by trained handlers." },
@@ -141,7 +141,7 @@ export const en: Dict = {
     eyebrow: "How it works",
     title: "From quote to doorstep in four steps.",
     steps: [
-      { title: "Get a Quote", text: "Send shipment details online or call our Arizona office." },
+      { title: "Get a Quote", text: "Send shipment details online or call our Florida office." },
       { title: "Book & Handover", text: "Confirm the booking, then hand over cargo for collection or depot drop-off." },
       { title: "Track in Real Time", text: "Follow every leg with your unique tracking number." },
       { title: "Delivered Safely", text: "Receive confirmation and full delivery documentation." },
@@ -199,7 +199,7 @@ export const en: Dict = {
     partners: "Partners",
     pick: (n) => `Testimonial from ${n}`,
     items: [
-      { quote: "Real-time tracking and a team that actually picks up the phone. Cross-border shipping finally feels predictable.", place: "Arizona" },
+      { quote: "Real-time tracking and a team that actually picks up the phone. Cross-border shipping finally feels predictable.", place: "Florida" },
       { quote: "We move time-sensitive medical equipment with them. In four years they've never made us explain why it matters.", place: "Chicago" },
       { quote: "Competitive rates and customs handled without drama on our ocean imports from Asia.", place: "Los Angeles" },
     ],
@@ -214,7 +214,7 @@ export const en: Dict = {
       { q: "Do you handle customs clearance?", a: "Yes. Our brokerage team prepares documentation, classifies goods, calculates duties and permits, and keeps the shipment compliant on both ends of the lane." },
       { q: "Is my cargo insured?", a: "Shipments can be insured against loss, damage and theft. Your account manager will recommend cover based on cargo value and route." },
       { q: "How do I track my shipment?", a: "Enter your reference number in the tracker on the home page. You'll also receive milestone alerts from dispatch through delivery." },
-      { q: "How fast will I get a quote?", a: "Send your details through the quote form or call our Arizona office. Most requests are answered within one business day." },
+      { q: "How fast will I get a quote?", a: "Send your details through the quote form or call our Florida office. Most requests are answered within one business day." },
     ],
   },
 
@@ -224,7 +224,7 @@ export const en: Dict = {
     quote: "Get a Free Quote",
     track: "Track Shipment",
     hq: "Headquarters",
-    hqValue: "Arizona, USA",
+    hqValue: "Florida, USA",
     phone: "Phone",
     email: "Email",
     hoursLabel: "Office hours",
@@ -240,7 +240,8 @@ export const en: Dict = {
     subscribe: "Subscribe",
     subscribed: "Subscribed — thank you!",
     badEmail: "Enter a valid email.",
-    rights: (y) => `© ${y} Global Tropical Cargo. Registered in the State of Arizona, USA.`,
+    rights: (y) => `© ${y} SolMar Cargo. Registered in the State of Florida, USA.`,
+    demo: "Demo site — company details, testimonials and rates are sample content.",
     privacy: "Privacy Policy",
     terms: "Terms of Use",
     about: "About Us",

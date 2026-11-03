@@ -163,6 +163,7 @@ export interface Dict {
     subscribed: string;
     badEmail: string;
     rights: (year: number) => string;
+    demo: string;
     privacy: string;
     terms: string;
     about: string;

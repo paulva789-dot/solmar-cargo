@@ -16,9 +16,9 @@ export type IconName =
   | "globe";
 
 export const CONTACT = {
-  phone: "+1 (559) 213-2902",
-  phoneHref: "tel:+15592132902",
-  email: "info@globaltropicalcargo.com",
+  phone: "+1 (555) 010-0177",
+  phoneHref: "tel:+15550100177",
+  email: "hello@solmarcargo.example",
 };
 
 /** `id` keys into t.services.items. */
@@ -53,7 +53,7 @@ export const REGIONS = [
   { id: "apac", x: 78, y: 46, size: 13 },
 ];
 
-export const PARTNERS = ["CargoLink", "AirBridge", "FreightHub", "TradePost", "OceanX", "SupplyNet"];
+export const PARTNERS = ["HarborLine", "SkyReach", "TradeWind", "PortBridge", "BlueCrate", "RouteOne"];
 
 export const INCOTERMS: { code: string; sea: boolean }[] = [
   { code: "EXW", sea: false },

@@ -3,8 +3,8 @@ import type { Dict } from "./dict";
 export const es: Dict = {
   locale: "es-ES",
   meta: {
-    title: "Global Tropical Cargo — Llevamos su carga a cada horizonte",
-    description: "Global Tropical Cargo — transporte de carga, almacenaje y cadena de suministro en más de 85 países.",
+    title: "SolMar Cargo — Sol, mar y entregas constantes",
+    description: "SolMar Cargo — transporte de carga, almacenaje y cadena de suministro en más de 85 países.",
   },
   skip: "Saltar al contenido",
   language: "Idioma",
@@ -14,7 +14,7 @@ export const es: Dict = {
   menuClose: "Cerrar menú",
   primaryNav: "Principal",
   announcements: "Anuncios",
-  brandAria: "Inicio de Global Tropical Cargo",
+  brandAria: "Inicio de SolMar Cargo",
   nav: { home: "Inicio", services: "Servicios", tools: "Herramientas", about: "Nosotros", contact: "Contacto", track: "Rastrear envío", quote: "Cotizar" },
   ticker: [
     "Rastreo en tiempo real en más de 50 países",
@@ -25,10 +25,10 @@ export const es: Dict = {
   hours: "Lun–Vie, 8:00–18:00",
 
   hero: {
-    pill: "Socio logístico de confianza · Sede en Arizona",
-    titleA: "Llevamos su carga a ",
-    titleEm: "cada horizonte.",
-    lead: "Soluciones de transporte, envíos y cadena de suministro en Norteamérica, Europa, Asia y más allá — con presencia en más de 85 países desde nuestra sede en Arizona.",
+    pill: "Socio logístico de confianza · Sede en Florida",
+    titleA: "Sol, mar y ",
+    titleEm: "entregas constantes.",
+    lead: "Soluciones de transporte, envíos y cadena de suministro en Norteamérica, Europa, Asia y más allá — con presencia en más de 85 países desde nuestra sede en Florida.",
     cta: "Solicitar cotización gratis",
     services: "Nuestros servicios",
     facts: [
@@ -51,7 +51,7 @@ export const es: Dict = {
     copyPrompt: "Copie este enlace",
     demo: "Datos de demostración — conecte una API de rastreo para el estado real.",
     stages: [
-      { label: "Carga recibida", place: "Phoenix, AZ" },
+      { label: "Carga recibida", place: "Miami, FL" },
       { label: "Despacho aduanero listo", place: "Puerto de Long Beach, CA" },
       { label: "En tránsito", place: "Tránsito del Pacífico" },
       { label: "En reparto", place: "Centro de destino" },
@@ -127,7 +127,7 @@ export const es: Dict = {
   about: {
     eyebrow: "Por qué elegirnos",
     title: "Logística con personas al otro lado de la línea.",
-    lead: "Con sede en Arizona y atención de lunes a viernes, de 8:00 a 18:00. Combinamos una red global de agentes con un gestor de cuenta dedicado para que nada se pierda entre continentes.",
+    lead: "Con sede en Florida y atención de lunes a viernes, de 8:00 a 18:00. Combinamos una red global de agentes con un gestor de cuenta dedicado para que nada se pierda entre continentes.",
     badge: "años moviendo carga",
     why: [
       { title: "Seguro y seguridad de la carga", text: "Cada envío está asegurado contra pérdida, daño y robo, y lo manejan operarios capacitados." },
@@ -141,7 +141,7 @@ export const es: Dict = {
     eyebrow: "Cómo funciona",
     title: "De la cotización a su puerta en cuatro pasos.",
     steps: [
-      { title: "Solicite una cotización", text: "Envíe los datos del envío en línea o llame a nuestra oficina de Arizona." },
+      { title: "Solicite una cotización", text: "Envíe los datos del envío en línea o llame a nuestra oficina de Florida." },
       { title: "Reserva y entrega", text: "Confirme la reserva y entregue la carga para su recogida o en nuestro depósito." },
       { title: "Rastreo en tiempo real", text: "Siga cada tramo con su número de rastreo único." },
       { title: "Entrega segura", text: "Reciba la confirmación y toda la documentación de entrega." },
@@ -199,7 +199,7 @@ export const es: Dict = {
     partners: "Socios",
     pick: (n) => `Testimonio de ${n}`,
     items: [
-      { quote: "Rastreo en tiempo real y un equipo que realmente contesta el teléfono. Por fin los envíos transfronterizos son predecibles.", place: "Arizona" },
+      { quote: "Rastreo en tiempo real y un equipo que realmente contesta el teléfono. Por fin los envíos transfronterizos son predecibles.", place: "Florida" },
       { quote: "Con ellos movemos equipo médico urgente. En cuatro años nunca nos han hecho explicar por qué es importante.", place: "Chicago" },
       { quote: "Tarifas competitivas y aduanas resueltas sin dramas en nuestras importaciones marítimas desde Asia.", place: "Los Ángeles" },
     ],
@@ -214,7 +214,7 @@ export const es: Dict = {
       { q: "¿Se encargan del despacho aduanero?", a: "Sí. Nuestro equipo de agentes prepara la documentación, clasifica la mercancía, calcula aranceles y permisos, y mantiene el envío en regla en ambos extremos de la ruta." },
       { q: "¿Mi carga está asegurada?", a: "Los envíos pueden asegurarse contra pérdida, daño y robo. Su gestor de cuenta le recomendará la cobertura según el valor de la carga y la ruta." },
       { q: "¿Cómo rastreo mi envío?", a: "Ingrese su número de referencia en el rastreador de la página de inicio. También recibirá alertas de hitos desde el despacho hasta la entrega." },
-      { q: "¿Qué tan rápido recibo una cotización?", a: "Envíe sus datos con el formulario o llame a nuestra oficina de Arizona. La mayoría de las solicitudes se responden en un día hábil." },
+      { q: "¿Qué tan rápido recibo una cotización?", a: "Envíe sus datos con el formulario o llame a nuestra oficina de Florida. La mayoría de las solicitudes se responden en un día hábil." },
     ],
   },
 
@@ -224,7 +224,7 @@ export const es: Dict = {
     quote: "Solicitar cotización gratis",
     track: "Rastrear envío",
     hq: "Sede central",
-    hqValue: "Arizona, EE. UU.",
+    hqValue: "Florida, EE. UU.",
     phone: "Teléfono",
     email: "Correo",
     hoursLabel: "Horario de oficina",
@@ -240,7 +240,8 @@ export const es: Dict = {
     subscribe: "Suscribirse",
     subscribed: "¡Suscrito, gracias!",
     badEmail: "Ingrese un correo válido.",
-    rights: (y) => `© ${y} Global Tropical Cargo. Registrada en el Estado de Arizona, EE. UU.`,
+    rights: (y) => `© ${y} SolMar Cargo. Registrada en el Estado de Florida, EE. UU.`,
+    demo: "Sitio de demostración — los datos de la empresa, testimonios y tarifas son contenido de ejemplo.",
     privacy: "Política de privacidad",
     terms: "Términos de uso",
     about: "Nosotros",

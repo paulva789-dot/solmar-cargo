@@ -9,7 +9,7 @@ interface Timeline {
 }
 
 const REF_RE = /^[A-Z0-9-]{6,20}$/;
-const KEY = "gtc-recent-refs";
+const KEY = "sm-recent-refs";
 const STAGES = 4;
 
 /** Deterministic demo progress derived from the reference number (language-independent). */

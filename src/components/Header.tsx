@@ -51,7 +51,7 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
             </svg>
           </span>
           <span className="brand__text">
-            Global Tropical <b>Cargo</b>
+            SolMar <b>Cargo</b>
           </span>
         </a>
 

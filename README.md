@@ -1,8 +1,8 @@
-# Global Tropical Cargo — Website
+# SolMar Cargo — Website
 
 A redesigned, fully responsive marketing site for a freight-forwarding company, built with **React 18 + TypeScript + Vite**. No UI framework, no runtime dependencies beyond React.
 
-> **Note:** This is an independent front-end redesign and portfolio project inspired by the public content of globaltropicalcargo.com. It is not the company's official site, uses none of its logos or photography, and is not affiliated with Global Tropical Cargo. Tracking data and estimator rates are demonstration values.
+> **Demo project.** "SolMar Cargo" is a fictional brand. Contact details use reserved fictional values (`.example` domain, `555-01xx` phone), testimonials and partner names are sample text, and tracking data and estimator rates are demonstration values. It is an independent front-end redesign inspired by the structure of typical freight-forwarder sites and is not affiliated with any real company.
 
 ## Features
 
