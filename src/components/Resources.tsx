@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { FAQ, INCOTERMS, INDUSTRIES } from "../data";
+import { INCOTERMS } from "../data";
+import { useI18n } from "../i18n";
 import { Reveal } from "./Sections";
 
 export function Industries() {
+  const { t } = useI18n();
   return (
     <section className="section">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">Industries</span>
-          <h2>Built around how your cargo behaves.</h2>
+          <span className="eyebrow">{t.industries.eyebrow}</span>
+          <h2>{t.industries.title}</h2>
         </Reveal>
         <div className="inds">
-          {INDUSTRIES.map((i, idx) => (
+          {t.industries.items.map((i, idx) => (
             <Reveal key={i.name}>
               <div className="ind">
                 <span className="ind__n">{String(idx + 1).padStart(2, "0")}</span>
@@ -26,41 +28,46 @@ export function Industries() {
   );
 }
 
+type Filter = "all" | "any" | "sea";
+
 export function Incoterms() {
-  const [filter, setFilter] = useState<"All" | "Any mode" | "Sea only">("All");
+  const { t } = useI18n();
+  const [filter, setFilter] = useState<Filter>("all");
   const [open, setOpen] = useState<string | null>("FOB");
-  const list = INCOTERMS.filter((i) => filter === "All" || i.modes === filter);
+  const list = INCOTERMS.filter((i) => filter === "all" || (filter === "sea") === i.sea);
+  const labels: Record<Filter, string> = { all: t.incoterms.all, any: t.incoterms.any, sea: t.incoterms.sea };
 
   return (
     <section className="section section--tint">
       <div className="container incoterms">
         <Reveal className="section-head">
-          <span className="eyebrow">Trade terms</span>
-          <h2>Incoterms® 2020, in plain English.</h2>
-          <p>Know exactly where cost and risk move from seller to buyer before you sign a contract.</p>
-          <div className="chips" role="group" aria-label="Filter by transport mode">
-            {(["All", "Any mode", "Sea only"] as const).map((f) => (
+          <span className="eyebrow">{t.incoterms.eyebrow}</span>
+          <h2>{t.incoterms.title}</h2>
+          <p>{t.incoterms.lead}</p>
+          <div className="chips" role="group" aria-label={t.incoterms.filterAria}>
+            {(["all", "any", "sea"] as const).map((f) => (
               <button key={f} aria-pressed={filter === f} className={filter === f ? "is-on" : ""} onClick={() => setFilter(f)}>
-                {f}
+                {labels[f]}
               </button>
             ))}
           </div>
         </Reveal>
         <ul className="terms">
-          {list.map((t) => {
-            const isOpen = open === t.code;
+          {list.map((term) => {
+            const text = t.incoterms.items[term.code];
+            const isOpen = open === term.code;
             return (
-              <li key={t.code} className={isOpen ? "is-open" : ""}>
-                <button aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : t.code)}>
-                  <b>{t.code}</b>
-                  <span>{t.name}</span>
-                  <em>{t.modes}</em>
+              <li key={term.code} className={isOpen ? "is-open" : ""}>
+                <button aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : term.code)}>
+                  <b>{term.code}</b>
+                  <span>{text.name}</span>
+                  <em>{term.sea ? t.incoterms.sea : t.incoterms.any}</em>
                 </button>
                 {isOpen && (
                   <div className="terms__body">
-                    <p>{t.summary}</p>
+                    <p>{text.summary}</p>
                     <small>
-                      Risk transfers: <b>{t.risk}</b>
+                      {t.incoterms.risk} <b>{text.risk}</b>
                     </small>
                   </div>
                 )}
@@ -74,16 +81,17 @@ export function Incoterms() {
 }
 
 export function Faq() {
+  const { t } = useI18n();
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section className="section">
       <div className="container faq">
         <Reveal className="section-head">
-          <span className="eyebrow">FAQ</span>
-          <h2>Questions shippers ask us most.</h2>
+          <span className="eyebrow">{t.faq.eyebrow}</span>
+          <h2>{t.faq.title}</h2>
         </Reveal>
         <div className="acc">
-          {FAQ.map((f, i) => {
+          {t.faq.items.map((f, i) => {
             const isOpen = open === i;
             return (
               <div key={f.q} className={`acc__item ${isOpen ? "is-open" : ""}`}>

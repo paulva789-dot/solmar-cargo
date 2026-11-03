@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
-import { CONTACT, PARTNERS, REGIONS, SERVICES, STATS, STEPS, TESTIMONIALS, WHY } from "../data";
+import { CONTACT, PARTNERS, REGIONS, SERVICES, STATS, WHY_ICONS } from "../data";
 import { useCountUp, useInView } from "../hooks";
+import { useI18n } from "../i18n";
 import type { OpenQuote } from "../types";
 import { Icon } from "./Icon";
 import { Tracker } from "./Tracker";
@@ -14,7 +15,7 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
   );
 }
 
-function SectionHead({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) {
+export function SectionHead({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) {
   return (
     <Reveal className="section-head">
       <span className="eyebrow">{eyebrow}</span>
@@ -25,6 +26,7 @@ function SectionHead({ eyebrow, title, lead }: { eyebrow: string; title: string;
 }
 
 export function Hero({ onQuote }: { onQuote: OpenQuote }) {
+  const { t } = useI18n();
   return (
     <section id="home" className="hero">
       <div className="hero__bg" aria-hidden="true">
@@ -36,35 +38,27 @@ export function Hero({ onQuote }: { onQuote: OpenQuote }) {
       </div>
       <div className="container hero__grid">
         <div>
-          <span className="pill">Trusted logistics partner · HQ Arizona</span>
+          <span className="pill">{t.hero.pill}</span>
           <h1>
-            Moving cargo across <em>every horizon.</em>
+            {t.hero.titleA}
+            <em>{t.hero.titleEm}</em>
           </h1>
-          <p className="hero__lead">
-            Freight, shipping and supply chain solutions across North America, Europe, Asia and beyond — serving 85+
-            countries from our headquarters in Arizona.
-          </p>
+          <p className="hero__lead">{t.hero.lead}</p>
           <div className="hero__actions">
             <button className="btn btn--primary" onClick={() => onQuote()}>
-              Get a Free Quote
+              {t.hero.cta}
             </button>
             <a className="btn btn--outline" href="#services">
-              Our Services
+              {t.hero.services}
             </a>
           </div>
           <dl className="hero__facts">
-            <div>
-              <dt>98.7%</dt>
-              <dd>On-time delivery</dd>
-            </div>
-            <div>
-              <dt>24/7</dt>
-              <dd>Live GPS tracking</dd>
-            </div>
-            <div>
-              <dt>200+</dt>
-              <dd>Global agents</dd>
-            </div>
+            {t.hero.facts.map((f) => (
+              <div key={f.l}>
+                <dt>{f.v}</dt>
+                <dd>{f.l}</dd>
+              </div>
+            ))}
           </dl>
         </div>
         <Tracker />
@@ -73,12 +67,12 @@ export function Hero({ onQuote }: { onQuote: OpenQuote }) {
   );
 }
 
-function Stat({ value, suffix, label, go }: { value: number; suffix: string; label: string; go: boolean }) {
+function Stat({ value, suffix, label, go, locale }: { value: number; suffix: string; label: string; go: boolean; locale: string }) {
   const n = useCountUp(value, go);
   return (
     <div className="stat">
       <b>
-        {n.toLocaleString()}
+        {n.toLocaleString(locale)}
         {suffix}
       </b>
       <span>{label}</span>
@@ -87,12 +81,13 @@ function Stat({ value, suffix, label, go }: { value: number; suffix: string; lab
 }
 
 export function Stats() {
+  const { t } = useI18n();
   const [ref, seen] = useInView<HTMLDivElement>(0.3);
   return (
-    <section className="stats" aria-label="Key figures">
+    <section className="stats" aria-label={t.statsAria}>
       <div className="container stats__row" ref={ref}>
-        {STATS.map((s) => (
-          <Stat key={s.label} {...s} go={seen} />
+        {STATS.map((s, i) => (
+          <Stat key={i} {...s} label={t.statLabels[i]} go={seen} locale={t.locale} />
         ))}
       </div>
     </section>
@@ -100,34 +95,34 @@ export function Stats() {
 }
 
 export function Services({ onQuote }: { onQuote: OpenQuote }) {
+  const { t } = useI18n();
   return (
     <section id="services" className="section">
       <div className="container">
-        <SectionHead
-          eyebrow="What we offer"
-          title="Every link in the chain, handled."
-          lead="From a single pallet to a full container program, pick one service or let us run the whole thing."
-        />
+        <SectionHead eyebrow={t.services.eyebrow} title={t.services.title} lead={t.services.lead} />
         <div className="cards">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.id}>
-              <article className="card" style={{ transitionDelay: `${i * 40}ms` }}>
-                <span className="card__icon">
-                  <Icon name={s.icon} size={26} />
-                </span>
-                <h3>{s.title}</h3>
-                <p>{s.blurb}</p>
-                <ul>
-                  {s.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-                <button className="link" onClick={() => onQuote()}>
-                  Quote this service <span aria-hidden="true">→</span>
-                </button>
-              </article>
-            </Reveal>
-          ))}
+          {SERVICES.map((s, i) => {
+            const item = t.services.items[s.id];
+            return (
+              <Reveal key={s.id}>
+                <article className="card" style={{ transitionDelay: `${i * 40}ms` }}>
+                  <span className="card__icon">
+                    <Icon name={s.icon} size={26} />
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.blurb}</p>
+                  <ul>
+                    {item.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+                  <button className="link" onClick={() => onQuote({ service: s.id })}>
+                    {t.services.cta} <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -135,27 +130,25 @@ export function Services({ onQuote }: { onQuote: OpenQuote }) {
 }
 
 export function About() {
+  const { t } = useI18n();
   return (
     <section id="about" className="section section--tint">
       <div className="container about">
         <Reveal>
           <div className="about__badge" aria-hidden="true">
             <b>15</b>
-            <span>years moving freight</span>
+            <span>{t.about.badge}</span>
           </div>
-          <span className="eyebrow">Why choose us</span>
-          <h2>Logistics with people on the other end of the line.</h2>
-          <p className="about__lead">
-            Headquartered in Arizona, open {CONTACT.hours}. We pair a global agent network with a dedicated account
-            manager so nothing gets lost between continents.
-          </p>
+          <span className="eyebrow">{t.about.eyebrow}</span>
+          <h2>{t.about.title}</h2>
+          <p className="about__lead">{t.about.lead}</p>
         </Reveal>
         <div className="why">
-          {WHY.map((w) => (
+          {t.about.why.map((w, i) => (
             <Reveal key={w.title}>
               <div className="why__item">
                 <span className="why__icon">
-                  <Icon name={w.icon} />
+                  <Icon name={WHY_ICONS[i]} />
                 </span>
                 <div>
                   <h3>{w.title}</h3>
@@ -171,12 +164,13 @@ export function About() {
 }
 
 export function Process() {
+  const { t } = useI18n();
   return (
     <section className="section">
       <div className="container">
-        <SectionHead eyebrow="How it works" title="From quote to doorstep in four steps." />
+        <SectionHead eyebrow={t.process.eyebrow} title={t.process.title} />
         <ol className="steps">
-          {STEPS.map((s, i) => (
+          {t.process.steps.map((s, i) => (
             <li key={s.title}>
               <Reveal>
                 <span className="steps__n">{String(i + 1).padStart(2, "0")}</span>
@@ -192,35 +186,36 @@ export function Process() {
 }
 
 export function Reach() {
+  const { t } = useI18n();
   const [active, setActive] = useState<string | null>(null);
   return (
     <section className="section reach">
       <div className="container reach__grid">
         <Reveal>
-          <span className="eyebrow eyebrow--light">Global reach</span>
-          <h2>85+ countries. 200+ agents. One point of contact.</h2>
+          <span className="eyebrow eyebrow--light">{t.reach.eyebrow}</span>
+          <h2>{t.reach.title}</h2>
           <ul className="reach__list">
             {REGIONS.map((r) => (
               <li
-                key={r.name}
-                className={active === r.name ? "is-active" : ""}
-                onMouseEnter={() => setActive(r.name)}
+                key={r.id}
+                className={active === r.id ? "is-active" : ""}
+                onMouseEnter={() => setActive(r.id)}
                 onMouseLeave={() => setActive(null)}
-                onFocus={() => setActive(r.name)}
+                onFocus={() => setActive(r.id)}
                 onBlur={() => setActive(null)}
                 tabIndex={0}
               >
-                {r.name}
+                {t.reach.regions[r.id]}
               </li>
             ))}
           </ul>
         </Reveal>
-        <div className="map" role="img" aria-label="Map of our service regions">
+        <div className="map" role="img" aria-label={t.reach.mapAria}>
           <div className="map__grid" />
           {REGIONS.map((r) => (
             <span
-              key={r.name}
-              className={`map__dot ${active === r.name ? "is-active" : ""}`}
+              key={r.id}
+              className={`map__dot ${active === r.id ? "is-active" : ""}`}
               style={{ left: `${r.x}%`, top: `${r.y}%`, width: r.size * 2, height: r.size * 2 }}
             >
               <i />
@@ -232,50 +227,53 @@ export function Reach() {
   );
 }
 
+const PEOPLE = ["Michael R. Carson", "Jennifer L. Walsh", "David T. Nguyen"];
+
 export function Testimonials() {
+  const { t } = useI18n();
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => setI((v) => (v + 1) % TESTIMONIALS.length), 6000);
+    const id = setInterval(() => setI((v) => (v + 1) % PEOPLE.length), 6000);
     return () => clearInterval(id);
   }, [paused]);
 
   return (
     <section className="section section--tint">
       <div className="container">
-        <SectionHead eyebrow="Client stories" title="Shippers who stopped worrying." />
+        <SectionHead eyebrow={t.testimonials.eyebrow} title={t.testimonials.title} />
         <div
           className="quotes"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           aria-live="polite"
         >
-          {TESTIMONIALS.map((t, idx) => (
-            <figure key={t.name} className={`quote ${idx === i ? "is-active" : ""}`} aria-hidden={idx !== i}>
-              <blockquote>“{t.quote}”</blockquote>
+          {t.testimonials.items.map((item, idx) => (
+            <figure key={PEOPLE[idx]} className={`quote ${idx === i ? "is-active" : ""}`} aria-hidden={idx !== i}>
+              <blockquote>“{item.quote}”</blockquote>
               <figcaption>
-                <span className="avatar">{t.name[0]}</span>
-                <b>{t.name}</b>
-                <small>{t.place}</small>
+                <span className="avatar">{PEOPLE[idx][0]}</span>
+                <b>{PEOPLE[idx]}</b>
+                <small>{item.place}</small>
               </figcaption>
             </figure>
           ))}
         </div>
-        <div className="dots" role="tablist" aria-label="Choose testimonial">
-          {TESTIMONIALS.map((t, idx) => (
+        <div className="dots" role="tablist" aria-label={t.testimonials.choose}>
+          {PEOPLE.map((name, idx) => (
             <button
-              key={t.name}
+              key={name}
               role="tab"
               aria-selected={idx === i}
-              aria-label={`Testimonial from ${t.name}`}
+              aria-label={t.testimonials.pick(name)}
               className={idx === i ? "is-active" : ""}
               onClick={() => setI(idx)}
             />
           ))}
         </div>
-        <ul className="partners" aria-label="Partners">
+        <ul className="partners" aria-label={t.testimonials.partners}>
           {PARTNERS.map((p) => (
             <li key={p}>{p}</li>
           ))}
@@ -286,34 +284,37 @@ export function Testimonials() {
 }
 
 export function Contact({ onQuote }: { onQuote: OpenQuote }) {
+  const { t } = useI18n();
+  const c = t.contact;
+  const items: { k: string; v: string; h?: string }[] = [
+    { k: c.hq, v: c.hqValue },
+    { k: c.phone, v: CONTACT.phone, h: CONTACT.phoneHref },
+    { k: c.email, v: CONTACT.email, h: `mailto:${CONTACT.email}` },
+    { k: c.hoursLabel, v: t.hours },
+  ];
   return (
     <section id="contact" className="section">
       <div className="container">
         <Reveal className="cta">
           <div>
-            <h2>Ready to ship?</h2>
-            <p>Get a free quote in one business day, or track a shipment that's already moving.</p>
+            <h2>{c.ctaTitle}</h2>
+            <p>{c.ctaText}</p>
           </div>
           <div className="cta__actions">
             <button className="btn btn--accent" onClick={() => onQuote()}>
-              Get a Free Quote
+              {c.quote}
             </button>
             <a className="btn btn--outline-light" href="#track">
-              Track Shipment
+              {c.track}
             </a>
           </div>
         </Reveal>
 
         <div className="contact">
-          {[
-            { k: "Headquarters", v: CONTACT.hq, h: undefined },
-            { k: "Phone", v: CONTACT.phone, h: CONTACT.phoneHref },
-            { k: "Email", v: CONTACT.email, h: `mailto:${CONTACT.email}` },
-            { k: "Office hours", v: CONTACT.hours, h: undefined },
-          ].map((c) => (
-            <div key={c.k} className="contact__item">
-              <small>{c.k}</small>
-              {c.h ? <a href={c.h}>{c.v}</a> : <span>{c.v}</span>}
+          {items.map((it) => (
+            <div key={it.k} className="contact__item">
+              <small>{it.k}</small>
+              {it.h ? <a href={it.h}>{it.v}</a> : <span>{it.v}</span>}
             </div>
           ))}
         </div>
@@ -323,6 +324,8 @@ export function Contact({ onQuote }: { onQuote: OpenQuote }) {
 }
 
 export function Footer() {
+  const { t } = useI18n();
+  const f = t.footer;
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "ok" | "bad">("idle");
 
@@ -331,25 +334,25 @@ export function Footer() {
       <div className="container footer__grid">
         <div>
           <p className="footer__brand">Global Tropical Cargo</p>
-          <p className="footer__muted">Freight forwarding, warehousing and supply chain partner.</p>
+          <p className="footer__muted">{f.blurb}</p>
           <div className="certs">
             <span>ISO Certified</span>
             <span>FIATA Member</span>
             <span>IATA Approved</span>
           </div>
         </div>
-        <nav aria-label="Quick links">
-          <h4>Quick links</h4>
-          <a href="#services">Services</a>
-          <a href="#about">About Us</a>
-          <a href="#track">Track Shipment</a>
-          <a href="#contact">Contact Us</a>
+        <nav aria-label={f.quickLinks}>
+          <h4>{f.quickLinks}</h4>
+          <a href="#services">{t.nav.services}</a>
+          <a href="#about">{f.about}</a>
+          <a href="#track">{f.track}</a>
+          <a href="#contact">{f.contact}</a>
         </nav>
-        <nav aria-label="Services">
-          <h4>Services</h4>
+        <nav aria-label={f.services}>
+          <h4>{f.services}</h4>
           {SERVICES.map((s) => (
             <a key={s.id} href="#services">
-              {s.title}
+              {t.services.items[s.id].title}
             </a>
           ))}
         </nav>
@@ -362,25 +365,25 @@ export function Footer() {
             if (ok) setEmail("");
           }}
         >
-          <h4>Logistics news</h4>
+          <h4>{f.news}</h4>
           <div className="news">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@company.com"
-              aria-label="Email address"
+              placeholder={f.emailPlaceholder}
+              aria-label={f.emailLabel}
             />
-            <button className="btn btn--accent btn--sm">Subscribe</button>
+            <button className="btn btn--accent btn--sm">{f.subscribe}</button>
           </div>
-          {state === "ok" && <p className="footer__ok">Subscribed — thank you!</p>}
-          {state === "bad" && <p className="field-error">Enter a valid email.</p>}
+          {state === "ok" && <p className="footer__ok">{f.subscribed}</p>}
+          {state === "bad" && <p className="field-error">{f.badEmail}</p>}
         </form>
       </div>
       <div className="container footer__base">
-        <span>© {new Date().getFullYear()} Global Tropical Cargo. Registered in the State of Arizona, USA.</span>
+        <span>{f.rights(new Date().getFullYear())}</span>
         <span>
-          <a href="#home">Privacy Policy</a> · <a href="#home">Terms of Use</a>
+          <a href="#home">{f.privacy}</a> · <a href="#home">{f.terms}</a>
         </span>
       </div>
     </footer>

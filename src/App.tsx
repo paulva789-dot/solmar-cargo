@@ -6,9 +6,11 @@ import { Faq, Incoterms, Industries } from "./components/Resources";
 import { About, Contact, Footer, Hero, Process, Reach, Services, Stats, Testimonials } from "./components/Sections";
 import { Tools } from "./components/Tools";
 import { useTheme } from "./hooks";
+import { useI18n } from "./i18n";
 import type { OpenQuote, QuoteSeed } from "./types";
 
 export default function App() {
+  const { t } = useI18n();
   const [theme, toggleTheme] = useTheme();
   const [quote, setQuote] = useState<{ open: boolean; seed: QuoteSeed | null }>({ open: false, seed: null });
   const openQuote: OpenQuote = useCallback((seed) => setQuote({ open: true, seed: seed ?? null }), []);
@@ -17,7 +19,7 @@ export default function App() {
   return (
     <>
       <a className="skip" href="#main">
-        Skip to content
+        {t.skip}
       </a>
       <Header onQuote={openQuote} theme={theme} onTheme={toggleTheme} />
       <main id="main">

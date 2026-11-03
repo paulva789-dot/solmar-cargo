@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { CONTACT, TICKER } from "../data";
+import { CONTACT } from "../data";
 import type { Theme } from "../hooks";
+import { isLang, LANGS, useI18n } from "../i18n";
 import type { OpenQuote } from "../types";
 
-const LINKS = [
-  { href: "#home", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#tools", label: "Tools" },
-  { href: "#about", label: "About Us" },
-  { href: "#contact", label: "Contact" },
-];
-
 export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme: Theme; onTheme: () => void }) {
+  const { t, lang, setLang } = useI18n();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const links = [
+    { href: "#home", label: t.nav.home },
+    { href: "#services", label: t.nav.services },
+    { href: "#tools", label: t.nav.tools },
+    { href: "#about", label: t.nav.about },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -31,17 +33,17 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
 
   return (
     <header className={`header ${scrolled ? "is-scrolled" : ""}`}>
-      <div className="ticker" aria-label="Announcements">
+      <div className="ticker" aria-label={t.announcements}>
         <div className="ticker__track">
-          {[...TICKER, ...TICKER].map((t, i) => (
-            <span key={i} aria-hidden={i >= TICKER.length}>
-              {t}
+          {[...t.ticker, ...t.ticker].map((s, i) => (
+            <span key={i} aria-hidden={i >= t.ticker.length}>
+              {s}
             </span>
           ))}
         </div>
       </div>
       <div className="container header__bar">
-        <a href="#home" className="brand" aria-label="Global Tropical Cargo home">
+        <a href="#home" className="brand" aria-label={t.brandAria}>
           <span className="brand__mark" aria-hidden="true">
             <svg viewBox="0 0 32 32" width="32" height="32">
               <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -53,8 +55,8 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
           </span>
         </a>
 
-        <nav className={`nav ${open ? "is-open" : ""}`} aria-label="Primary">
-          {LINKS.map((l) => (
+        <nav className={`nav ${open ? "is-open" : ""}`} aria-label={t.primaryNav}>
+          {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
             </a>
@@ -66,17 +68,29 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
 
         <div className="header__cta">
           <a href="#track" className="btn btn--ghost btn--sm">
-            Track Shipment
+            {t.nav.track}
           </a>
-          <button className="theme" onClick={onTheme} aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}>
+          <select
+            className="lang"
+            value={lang}
+            aria-label={t.language}
+            onChange={(e) => isLang(e.target.value) && setLang(e.target.value)}
+          >
+            {LANGS.map((l) => (
+              <option key={l.code} value={l.code}>
+                {l.label} — {l.native}
+              </option>
+            ))}
+          </select>
+          <button className="theme" onClick={onTheme} aria-label={theme === "light" ? t.themeToDark : t.themeToLight}>
             {theme === "light" ? "☾" : "☀"}
           </button>
           <button className="btn btn--primary btn--sm" onClick={() => onQuote()}>
-            Get a Quote
+            {t.nav.quote}
           </button>
           <button
             className="burger"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.menuClose : t.menuOpen}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >

@@ -490,3 +490,24 @@
     display: none;
   }
 }
+
+.lang {
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 92px;
+}
+.lang option {
+  color: #0b2a33;
+}
+@media (max-width: 620px) {
+  .lang {
+    max-width: 64px;
+  }
+}

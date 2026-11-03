@@ -13,6 +13,7 @@ A redesigned, fully responsive marketing site for a freight-forwarding company, 
 | **Quote request** | Accessible modal form with validation, seeded from the estimator. |
 | **Incoterms® 2020 explorer** | All 11 terms, filterable by transport mode. |
 | **Industries, FAQ, testimonials, global reach map** | Content sections with scroll-reveal animation. |
+| **Multi-language** | English, Spanish and French. Auto-detects the browser language, remembers the choice, updates `<html lang>`, page title and number/date/currency formats. |
 | **Dark / light theme** | Follows system preference, persists choice. |
 | **Accessibility** | Skip link, ARIA tabs / accordions / progressbar, focus styles, `prefers-reduced-motion` support. |
 | **Extras** | Scroll-progress bar, back-to-top, WhatsApp button, newsletter signup validation, JSON-LD structured data. |
@@ -34,7 +35,8 @@ Requires Node 18+.
 ```
 src/
   App.tsx                 page composition + theme + quote modal state
-  data.ts                 all site copy and content (edit here first)
+  data.ts                 language-independent data (ids, numbers, contact)
+  i18n/                   dict.ts (typed shape), en.ts / es.ts / fr.ts, provider + useI18n()
   hooks.ts                useInView, useCountUp, useTheme, useScrollProgress
   types.ts                shared types
   lib/estimate.ts         pure estimator logic (unit-tested)
@@ -48,6 +50,14 @@ src/
     Floating.tsx          progress bar, back-to-top, WhatsApp
   styles.css, extras.css  design tokens and styles (light + dark)
 ```
+
+## Adding or editing a language
+
+All user-visible text lives in `src/i18n/`. `dict.ts` defines the `Dict` interface; each language file must satisfy it, so TypeScript flags any missing string. To add a language:
+
+1. Copy `en.ts` to `xx.ts` and translate it.
+2. Register it in `LANGS` (`dict.ts`), the `Lang` type, `DICTS` and `isLang` (`index.tsx`).
+3. Run `npm test` — a test checks every dictionary has the same keys as English with no empty values.
 
 ## Connecting real data
 

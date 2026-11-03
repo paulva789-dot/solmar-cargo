@@ -6,6 +6,7 @@
  */
 
 export type Mode = "air" | "ocean" | "road";
+export type EstimateError = "weight" | "tooHeavy" | "road";
 
 export interface Region {
   id: string;
@@ -80,11 +81,11 @@ export const AIR_KG_PER_CBM = 167;
 export const volumetricKg = (lengthCm: number, widthCm: number, heightCm: number, pieces = 1): number =>
   Math.max(0, (lengthCm * widthCm * heightCm * pieces) / 6000);
 
-export function estimate(input: EstimateInput): Estimate | { error: string } {
+export function estimate(input: EstimateInput): Estimate | { error: EstimateError } {
   const { mode, from, to, weightKg, volumeCbm } = input;
-  if (!(weightKg > 0) || !(volumeCbm >= 0)) return { error: "Enter a weight above zero." };
-  if (weightKg > 200000) return { error: "For loads this large, request a custom quote." };
-  if (mode === "road" && !canRoad(from, to)) return { error: "Road transport isn't available between those regions." };
+  if (!(weightKg > 0) || !(volumeCbm >= 0)) return { error: "weight" };
+  if (weightKg > 200000) return { error: "tooHeavy" };
+  if (mode === "road" && !canRoad(from, to)) return { error: "road" };
 
   const d = from === to ? 4 : distance(from, to);
   const r = RATES[mode];
@@ -118,7 +119,7 @@ export function estimate(input: EstimateInput): Estimate | { error: string } {
   };
 }
 
-export const isError = (r: Estimate | { error: string }): r is { error: string } => "error" in r;
+export const isError = (r: Estimate | { error: EstimateError }): r is { error: EstimateError } => "error" in r;
 
-export const usd = (n: number) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+export const usd = (n: number, locale = "en-US") =>
+  n.toLocaleString(locale, { style: "currency", currency: "USD", maximumFractionDigits: 0 });

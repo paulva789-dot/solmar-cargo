@@ -1,5 +1,6 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { SERVICES } from "../data";
+import { useI18n } from "../i18n";
 import type { QuoteSeed } from "../types";
 
 interface Form {
@@ -11,11 +12,15 @@ interface Form {
   details: string;
 }
 
-const EMPTY: Form = { name: "", email: "", service: SERVICES[0].title, from: "", to: "", details: "" };
+type Errors = Partial<Record<"name" | "email" | "from" | "to", string>>;
+
+const EMPTY: Form = { name: "", email: "", service: SERVICES[0].id, from: "", to: "", details: "" };
 
 export function QuoteModal({ open, seed, onClose }: { open: boolean; seed: QuoteSeed | null; onClose: () => void }) {
+  const { t } = useI18n();
+  const q = t.quote;
   const [form, setForm] = useState<Form>(EMPTY);
-  const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
+  const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
   const firstRef = useRef<HTMLInputElement>(null);
 
@@ -41,11 +46,11 @@ export function QuoteModal({ open, seed, onClose }: { open: boolean; seed: Quote
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    const errs: typeof errors = {};
-    if (form.name.trim().length < 2) errs.name = "Please enter your name.";
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) errs.email = "Enter a valid email.";
-    if (!form.from.trim()) errs.from = "Where is it shipping from?";
-    if (!form.to.trim()) errs.to = "Where is it going?";
+    const errs: Errors = {};
+    if (form.name.trim().length < 2) errs.name = q.errName;
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) errs.email = q.errEmail;
+    if (!form.from.trim()) errs.from = q.errFrom;
+    if (!form.to.trim()) errs.to = q.errTo;
     setErrors(errs);
     if (Object.keys(errs).length === 0) setSent(true);
   };
@@ -58,53 +63,60 @@ export function QuoteModal({ open, seed, onClose }: { open: boolean; seed: Quote
   };
 
   return (
-    <div className="modal" role="dialog" aria-modal="true" aria-labelledby="quote-title" onMouseDown={(e) => e.target === e.currentTarget && close()}>
+    <div
+      className="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="quote-title"
+      onMouseDown={(e) => e.target === e.currentTarget && close()}
+    >
       <div className="modal__card">
-        <button className="modal__x" onClick={close} aria-label="Close">
+        <button className="modal__x" onClick={close} aria-label={q.close}>
           ×
         </button>
         {sent ? (
           <div className="modal__done">
-            <div className="check" aria-hidden="true">✓</div>
-            <h3 id="quote-title">Request received</h3>
-            <p>
-              Thanks {form.name.split(" ")[0]} — a logistics specialist will reply to <b>{form.email}</b> within one
-              business day.
-            </p>
+            <div className="check" aria-hidden="true">
+              ✓
+            </div>
+            <h3 id="quote-title">{q.doneTitle}</h3>
+            <p>{q.done(form.name.trim().split(" ")[0], form.email)}</p>
             <button className="btn btn--primary" onClick={close}>
-              Done
+              {q.ok}
             </button>
           </div>
         ) : (
           <form onSubmit={submit} noValidate>
-            <h3 id="quote-title">Get a free quote</h3>
-            <p className="modal__sub">Tell us about your shipment and we'll come back with options.</p>
+            <h3 id="quote-title">{q.title}</h3>
+            <p className="modal__sub">{q.sub}</p>
             <div className="grid2">
-              <Field label="Full name" error={errors.name}>
+              <Field label={q.name} error={errors.name}>
                 <input ref={firstRef} value={form.name} onChange={(e) => set("name", e.target.value)} />
               </Field>
-              <Field label="Email" error={errors.email}>
+              <Field label={q.email} error={errors.email}>
                 <input type="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
               </Field>
-              <Field label="Origin" error={errors.from}>
+              <Field label={q.origin} error={errors.from}>
                 <input value={form.from} onChange={(e) => set("from", e.target.value)} />
               </Field>
-              <Field label="Destination" error={errors.to}>
+              <Field label={q.destination} error={errors.to}>
                 <input value={form.to} onChange={(e) => set("to", e.target.value)} />
               </Field>
             </div>
-            <Field label="Service">
+            <Field label={q.service}>
               <select value={form.service} onChange={(e) => set("service", e.target.value)}>
                 {SERVICES.map((s) => (
-                  <option key={s.id}>{s.title}</option>
+                  <option key={s.id} value={s.id}>
+                    {t.services.items[s.id].title}
+                  </option>
                 ))}
               </select>
             </Field>
-            <Field label="Cargo details (optional)">
+            <Field label={q.details}>
               <textarea rows={3} value={form.details} onChange={(e) => set("details", e.target.value)} />
             </Field>
             <button className="btn btn--primary btn--block" type="submit">
-              Request quote
+              {q.submit}
             </button>
           </form>
         )}
@@ -113,7 +125,7 @@ export function QuoteModal({ open, seed, onClose }: { open: boolean; seed: Quote
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
   return (
     <label className={`field ${error ? "has-error" : ""}`}>
       <span>{label}</span>
