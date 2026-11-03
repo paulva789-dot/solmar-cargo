@@ -17,6 +17,24 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
     { href: "#contact", label: t.nav.contact },
   ];
 
+  const [current, setCurrent] = useState("home");
+
+  // Scroll-spy: highlight the nav link for the section currently under the header.
+  useEffect(() => {
+    const ids = ["home", "services", "tools", "about", "contact"];
+    const spy = () => {
+      let cur = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 150) cur = id;
+      }
+      setCurrent(cur);
+    };
+    spy();
+    window.addEventListener("scroll", spy, { passive: true });
+    return () => window.removeEventListener("scroll", spy);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -48,7 +66,13 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
 
         <nav className={`nav ${open ? "is-open" : ""}`} aria-label={t.primaryNav}>
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <a
+              key={l.href}
+              href={l.href}
+              className={current === l.href.slice(1) ? "is-active" : ""}
+              aria-current={current === l.href.slice(1) ? "location" : undefined}
+              onClick={() => setOpen(false)}
+            >
               {l.label}
             </a>
           ))}

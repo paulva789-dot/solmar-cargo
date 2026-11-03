@@ -1,0 +1,270 @@
+/* ---------- UI polish layer: depth, rhythm and detail on top of styles.css / extras.css ---------- */
+
+::selection {
+  background: var(--gold);
+  color: var(--lagoon-dd);
+}
+
+/* Navigation: current-section indicator */
+.nav a.is-active {
+  color: var(--coral-d);
+}
+.nav a.is-active::after {
+  width: 100%;
+}
+[data-theme="dark"] .nav a.is-active {
+  color: var(--gold);
+}
+
+/* Eyebrow labels get a leading rule */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.8;
+}
+
+/* Service cards: numbered, accent bar, gradient icon tile, soft glow on hover */
+.cards {
+  counter-reset: svc;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.card::after {
+  counter-increment: svc;
+  content: "0" counter(svc);
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--ink);
+  opacity: 0.18;
+}
+.card:hover::before {
+  transform: scaleX(1);
+}
+.card:hover {
+  box-shadow: 0 30px 60px -30px rgba(8, 52, 61, 0.5), 0 0 0 1px var(--lagoon);
+}
+.card__icon {
+  border-radius: 16px;
+  background: linear-gradient(145deg, var(--lagoon), var(--lagoon-dd));
+  box-shadow: 0 12px 22px -12px rgba(8, 52, 61, 0.8);
+  transition: transform 0.3s;
+}
+.card:hover .card__icon {
+  transform: rotate(-6deg) scale(1.06);
+}
+
+/* Stats bar */
+.stats__row {
+  border: 1px solid var(--line);
+  position: relative;
+}
+.stats__row::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg, var(--coral), var(--gold), var(--lagoon));
+}
+.stat b {
+  letter-spacing: -0.02em;
+}
+
+/* Why-us and industries: gentle lift */
+.why__item,
+.ind {
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.why__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--lagoon);
+}
+.ind:hover {
+  box-shadow: var(--shadow);
+}
+.why__icon {
+  transition: transform 0.3s, background 0.3s, color 0.3s;
+}
+.why__item:hover .why__icon {
+  background: var(--coral);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* Process steps: connected by a rail */
+.steps li {
+  position: relative;
+}
+.steps li::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 0 0 0 4px var(--sand);
+}
+.steps li:nth-child(odd)::before {
+  background: var(--lagoon);
+}
+
+/* Reach map: richer network view */
+.map {
+  background: radial-gradient(circle at 50% 45%, rgba(14, 95, 107, 0.55), transparent 70%),
+    repeating-radial-gradient(circle at 50% 45%, transparent 0 58px, rgba(255, 255, 255, 0.05) 59px 60px), #062a32;
+}
+.map__links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.map__links line {
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 6;
+  animation: dash 22s linear infinite;
+  transition: stroke 0.2s;
+}
+.map__links line.is-hot {
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-dasharray: none;
+  animation: none;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+.map__label {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #cfe8eb;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: color 0.2s, opacity 0.2s;
+}
+.map__dot.is-active .map__label {
+  color: var(--gold);
+  opacity: 1;
+}
+.map__dot {
+  z-index: 1;
+}
+
+/* Testimonials: framed card, larger type */
+.quotes {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 44px 48px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.quotes::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 40px;
+  bottom: 40px;
+  width: 5px;
+  border-radius: 0 5px 5px 0;
+  background: linear-gradient(var(--coral), var(--gold));
+}
+.partners li {
+  transition: opacity 0.2s, color 0.2s;
+}
+.partners li:hover {
+  opacity: 1;
+  color: var(--lagoon);
+}
+
+/* Tools panel */
+.tools {
+  border-radius: 28px;
+}
+.tabs button {
+  transition: background 0.2s, color 0.2s;
+}
+.tabs button:not(.is-active):hover {
+  background: rgba(14, 95, 107, 0.1);
+  color: var(--ink);
+}
+
+/* Tracker card: subtle depth */
+.tracker {
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+/* CTA and footer */
+.cta {
+  background: radial-gradient(520px 300px at 8% 110%, rgba(255, 184, 77, 0.28), transparent 65%),
+    linear-gradient(120deg, var(--lagoon-d), var(--lagoon));
+}
+.footer {
+  background: radial-gradient(900px 420px at 88% -10%, rgba(255, 107, 74, 0.16), transparent 62%), var(--lagoon-dd);
+}
+.footer nav a,
+.footer div > a {
+  transition: color 0.2s, transform 0.2s;
+}
+.footer nav a:hover {
+  transform: translateX(3px);
+}
+
+/* Buttons */
+.btn {
+  position: relative;
+}
+.btn--primary:active,
+.btn--accent:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 620px) {
+  .quotes {
+    padding: 30px 24px 30px 30px;
+  }
+  .map__label {
+    font-size: 0.62rem;
+  }
+}

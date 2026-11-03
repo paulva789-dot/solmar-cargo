@@ -209,6 +209,15 @@ export function Reach() {
         </Reveal>
         <div className="map" role="img" aria-label={t.reach.mapAria}>
           <div className="map__grid" />
+          <svg className="map__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            {LINKS.map(([a, b]) => {
+              const p = REGIONS.find((r) => r.id === a);
+              const q = REGIONS.find((r) => r.id === b);
+              if (!p || !q) return null;
+              const hot = active === a || active === b;
+              return <line key={`${a}-${b}`} x1={p.x} y1={p.y} x2={q.x} y2={q.y} className={hot ? "is-hot" : ""} vectorEffect="non-scaling-stroke" />;
+            })}
+          </svg>
           {REGIONS.map((r) => (
             <span
               key={r.id}
@@ -216,6 +225,7 @@ export function Reach() {
               style={{ left: `${r.x}%`, top: `${r.y}%`, width: r.size * 2, height: r.size * 2 }}
             >
               <i />
+              <b className="map__label">{t.reach.regions[r.id]}</b>
             </span>
           ))}
         </div>
@@ -223,6 +233,18 @@ export function Reach() {
     </section>
   );
 }
+
+/** Trade-lane links drawn between regions on the reach map. */
+const LINKS: [string, string][] = [
+  ["na", "latam"],
+  ["na", "eu"],
+  ["eu", "me"],
+  ["eu", "af"],
+  ["af", "latam"],
+  ["me", "apac"],
+  ["af", "me"],
+  ["na", "apac"],
+];
 
 const PEOPLE = ["Elena Marsh", "Kofi Mensah", "Hannah Brooks"];
 
