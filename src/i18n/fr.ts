@@ -44,6 +44,7 @@ export const fr: Dict = {
     button: "Suivre",
     errorFormat: "Saisissez 6 à 20 lettres, chiffres ou tirets.",
     recent: "Récents :",
+    samples: "Numéros de démonstration :",
     eta: (d) => `Arrivée estimée : ${d}`,
     progress: "Progression de l'envoi",
     share: "Copier le lien",
@@ -63,7 +64,7 @@ export const fr: Dict = {
 
   services: {
     eyebrow: "Ce que nous offrons",
-    title: "Chaque maillon de la chaîne, pris en charge.",
+    title: "Services de fret",
     lead: "D'une seule palette à un programme complet de conteneurs, choisissez un service ou laissez-nous tout gérer.",
     cta: "Devis pour ce service",
     items: {
@@ -78,7 +79,7 @@ export const fr: Dict = {
 
   tools: {
     eyebrow: "Outils fret",
-    title: "Planifiez avant de réserver.",
+    title: "Estimez et planifiez votre envoi",
     lead: "Des calculateurs rapides et transparents pour aborder le devis déjà bien informé.",
     aria: "Outils fret",
     tabs: { estimate: "Estimateur de tarifs", volume: "Poids volumétrique", containers: "Guide des conteneurs" },
@@ -126,7 +127,7 @@ export const fr: Dict = {
 
   about: {
     eyebrow: "Pourquoi nous choisir",
-    title: "Une logistique avec de vraies personnes au bout du fil.",
+    title: "Un gestionnaire de compte dédié, un réseau mondial",
     lead: "Siège en Floride, ouvert du lundi au vendredi de 8h00 à 18h00. Nous associons un réseau mondial d'agents à un gestionnaire de compte dédié pour que rien ne se perde entre les continents.",
     badge: "ans de fret",
     why: [
@@ -139,7 +140,7 @@ export const fr: Dict = {
 
   process: {
     eyebrow: "Comment ça marche",
-    title: "Du devis à votre porte en quatre étapes.",
+    title: "Le déroulement d'un envoi",
     steps: [
       { title: "Demandez un devis", text: "Envoyez les détails de l'envoi en ligne ou appelez notre bureau de Floride." },
       { title: "Réservation et remise", text: "Confirmez la réservation, puis remettez la marchandise pour enlèvement ou dépôt à l'entrepôt." },
@@ -150,7 +151,7 @@ export const fr: Dict = {
 
   industries: {
     eyebrow: "Secteurs",
-    title: "Conçu selon le comportement de votre marchandise.",
+    title: "Secteurs desservis",
     items: [
       { name: "Médical et sciences de la vie", note: "Manutention urgente, sous température dirigée, avec chaîne de traçabilité complète." },
       { name: "Commerce de détail et e-commerce", note: "Pics saisonniers, groupage et livraison du dernier kilomètre." },
@@ -170,7 +171,7 @@ export const fr: Dict = {
 
   incoterms: {
     eyebrow: "Termes commerciaux",
-    title: "Incoterms® 2020, en langage clair.",
+    title: "Référentiel Incoterms® 2020",
     lead: "Sachez exactement où coûts et risques passent du vendeur à l'acheteur avant de signer un contrat.",
     filterAria: "Filtrer par mode de transport",
     all: "Tous",
@@ -194,7 +195,7 @@ export const fr: Dict = {
 
   testimonials: {
     eyebrow: "Témoignages",
-    title: "Des expéditeurs enfin sereins.",
+    title: "Ce que disent nos clients",
     choose: "Choisir un témoignage",
     partners: "Partenaires",
     pick: (n) => `Témoignage de ${n}`,
@@ -207,7 +208,7 @@ export const fr: Dict = {
 
   faq: {
     eyebrow: "FAQ",
-    title: "Les questions que les expéditeurs nous posent le plus.",
+    title: "Questions fréquentes",
     items: [
       { q: "Comment est calculé le prix du fret aérien ?", a: "Le fret aérien est facturé sur le plus élevé du poids réel et du poids volumétrique. Les marchandises volumineuses et légères sont facturées au volume — utilisez le calculateur volumétrique ci-dessus avant de réserver." },
       { q: "Quelle différence entre FCL et LCL ?", a: "Le FCL (conteneur complet) vous réserve un conteneur entier. Le LCL (groupage) partage l'espace avec la marchandise d'autres expéditeurs : idéal pour les petits volumes, mais avec un délai de groupage en plus." },
@@ -219,7 +220,7 @@ export const fr: Dict = {
   },
 
   contact: {
-    ctaTitle: "Prêt à expédier ?",
+    ctaTitle: "Demander un devis",
     ctaText: "Recevez un devis gratuit sous un jour ouvré, ou suivez un envoi déjà en route.",
     quote: "Demander un devis gratuit",
     track: "Suivre un envoi",

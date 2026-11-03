@@ -80,3 +80,14 @@ The estimator in `src/lib/estimate.ts` uses **illustrative** rates. Replace `RAT
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+## Demo tracking numbers
+
+Any 6–20 character reference works; the demo derives progress from it. These show each of the four stages, and are offered as one-click chips under the tracker:
+
+| Number | Shows |
+| --- | --- |
+| `SM-480102` | 1 of 4 — cargo received |
+| `SM-480103` | 2 of 4 — customs cleared |
+| `SM-480100` | 3 of 4 — in transit |
+| `SM-480101` | 4 of 4 — out for delivery |

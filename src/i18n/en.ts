@@ -44,6 +44,7 @@ export const en: Dict = {
     button: "Track Now",
     errorFormat: "Enter 6–20 letters, numbers or dashes.",
     recent: "Recent:",
+    samples: "Demo numbers:",
     eta: (d) => `Est. arrival ${d}`,
     progress: "Shipment progress",
     share: "Copy share link",
@@ -63,7 +64,7 @@ export const en: Dict = {
 
   services: {
     eyebrow: "What we offer",
-    title: "Every link in the chain, handled.",
+    title: "Freight services",
     lead: "From a single pallet to a full container program, pick one service or let us run the whole thing.",
     cta: "Quote this service",
     items: {
@@ -78,7 +79,7 @@ export const en: Dict = {
 
   tools: {
     eyebrow: "Freight tools",
-    title: "Plan before you book.",
+    title: "Estimate and plan your shipment",
     lead: "Quick, transparent calculators so you walk into the quote conversation already informed.",
     aria: "Freight tools",
     tabs: { estimate: "Rate estimator", volume: "Volumetric weight", containers: "Container guide" },
@@ -126,7 +127,7 @@ export const en: Dict = {
 
   about: {
     eyebrow: "Why choose us",
-    title: "Logistics with people on the other end of the line.",
+    title: "Dedicated account management on a global network",
     lead: "Headquartered in Florida, open Mon–Fri, 8:00am–6:00pm. We pair a global agent network with a dedicated account manager so nothing gets lost between continents.",
     badge: "years moving freight",
     why: [
@@ -139,7 +140,7 @@ export const en: Dict = {
 
   process: {
     eyebrow: "How it works",
-    title: "From quote to doorstep in four steps.",
+    title: "How shipping with us works",
     steps: [
       { title: "Get a Quote", text: "Send shipment details online or call our Florida office." },
       { title: "Book & Handover", text: "Confirm the booking, then hand over cargo for collection or depot drop-off." },
@@ -150,7 +151,7 @@ export const en: Dict = {
 
   industries: {
     eyebrow: "Industries",
-    title: "Built around how your cargo behaves.",
+    title: "Industries we serve",
     items: [
       { name: "Medical & Life Sciences", note: "Time-critical, temperature-aware handling and full chain-of-custody." },
       { name: "Retail & E-commerce", note: "Seasonal peaks, consolidation and last-mile delivery." },
@@ -170,7 +171,7 @@ export const en: Dict = {
 
   incoterms: {
     eyebrow: "Trade terms",
-    title: "Incoterms® 2020, in plain English.",
+    title: "Incoterms® 2020 reference",
     lead: "Know exactly where cost and risk move from seller to buyer before you sign a contract.",
     filterAria: "Filter by transport mode",
     all: "All",
@@ -194,7 +195,7 @@ export const en: Dict = {
 
   testimonials: {
     eyebrow: "Client stories",
-    title: "Shippers who stopped worrying.",
+    title: "What our clients say",
     choose: "Choose testimonial",
     partners: "Partners",
     pick: (n) => `Testimonial from ${n}`,
@@ -207,7 +208,7 @@ export const en: Dict = {
 
   faq: {
     eyebrow: "FAQ",
-    title: "Questions shippers ask us most.",
+    title: "Frequently asked questions",
     items: [
       { q: "How is air freight priced?", a: "Air freight is charged on the greater of actual weight and volumetric weight. Bulky, light cargo is billed on volume — use the volumetric calculator above to check before you book." },
       { q: "What is the difference between FCL and LCL?", a: "FCL (full container load) gives you a whole container to yourself. LCL (less than container load) shares space with other shippers' goods, which suits smaller volumes but adds consolidation handling time." },
@@ -219,7 +220,7 @@ export const en: Dict = {
   },
 
   contact: {
-    ctaTitle: "Ready to ship?",
+    ctaTitle: "Request a quote",
     ctaText: "Get a free quote in one business day, or track a shipment that's already moving.",
     quote: "Get a Free Quote",
     track: "Track Shipment",

@@ -47,6 +47,7 @@ export interface Dict {
     button: string;
     errorFormat: string;
     recent: string;
+    samples: string;
     eta: (date: string) => string;
     progress: string;
     share: string;

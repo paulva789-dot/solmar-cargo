@@ -12,6 +12,14 @@ const REF_RE = /^[A-Z0-9-]{6,20}$/;
 const KEY = "sm-recent-refs";
 const STAGES = 4;
 
+/** Demo tracking numbers, one per stage (stage = sum of character codes mod 4, plus 1). */
+const SAMPLES: { ref: string; note: string }[] = [
+  { ref: "SM-480102", note: "1/4" },
+  { ref: "SM-480103", note: "2/4" },
+  { ref: "SM-480100", note: "3/4" },
+  { ref: "SM-480101", note: "4/4" },
+];
+
 /** Deterministic demo progress derived from the reference number (language-independent). */
 export function buildTimeline(ref: string, now = Date.now()): Timeline {
   const seed = [...ref].reduce((a, c) => a + c.charCodeAt(0), 0);
@@ -119,6 +127,16 @@ export function Tracker() {
             {recent.map((r) => (
               <button type="button" key={r} onClick={() => run(r)}>
                 {r}
+              </button>
+            ))}
+          </p>
+        )}
+        {!result && (
+          <p className="tracker__recent tracker__samples">
+            {t.tracker.samples}
+            {SAMPLES.map((s) => (
+              <button type="button" key={s.ref} onClick={() => run(s.ref)} title={s.note}>
+                {s.ref}
               </button>
             ))}
           </p>

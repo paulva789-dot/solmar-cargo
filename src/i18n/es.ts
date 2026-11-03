@@ -44,6 +44,7 @@ export const es: Dict = {
     button: "Rastrear",
     errorFormat: "Ingrese de 6 a 20 letras, números o guiones.",
     recent: "Recientes:",
+    samples: "Números de prueba:",
     eta: (d) => `Llegada estimada: ${d}`,
     progress: "Progreso del envío",
     share: "Copiar enlace",
@@ -63,7 +64,7 @@ export const es: Dict = {
 
   services: {
     eyebrow: "Qué ofrecemos",
-    title: "Cada eslabón de la cadena, resuelto.",
+    title: "Servicios de carga",
     lead: "Desde un solo palé hasta un programa completo de contenedores: elija un servicio o deje que nos encarguemos de todo.",
     cta: "Cotizar este servicio",
     items: {
@@ -78,7 +79,7 @@ export const es: Dict = {
 
   tools: {
     eyebrow: "Herramientas de carga",
-    title: "Planifique antes de reservar.",
+    title: "Estime y planifique su envío",
     lead: "Calculadoras rápidas y transparentes para que llegue a la cotización ya bien informado.",
     aria: "Herramientas de carga",
     tabs: { estimate: "Estimador de tarifas", volume: "Peso volumétrico", containers: "Guía de contenedores" },
@@ -126,7 +127,7 @@ export const es: Dict = {
 
   about: {
     eyebrow: "Por qué elegirnos",
-    title: "Logística con personas al otro lado de la línea.",
+    title: "Gestión de cuenta dedicada sobre una red global",
     lead: "Con sede en Florida y atención de lunes a viernes, de 8:00 a 18:00. Combinamos una red global de agentes con un gestor de cuenta dedicado para que nada se pierda entre continentes.",
     badge: "años moviendo carga",
     why: [
@@ -139,7 +140,7 @@ export const es: Dict = {
 
   process: {
     eyebrow: "Cómo funciona",
-    title: "De la cotización a su puerta en cuatro pasos.",
+    title: "Cómo funciona un envío con nosotros",
     steps: [
       { title: "Solicite una cotización", text: "Envíe los datos del envío en línea o llame a nuestra oficina de Florida." },
       { title: "Reserva y entrega", text: "Confirme la reserva y entregue la carga para su recogida o en nuestro depósito." },
@@ -150,7 +151,7 @@ export const es: Dict = {
 
   industries: {
     eyebrow: "Sectores",
-    title: "Pensado según el comportamiento de su carga.",
+    title: "Sectores que atendemos",
     items: [
       { name: "Médico y ciencias de la vida", note: "Manejo urgente, con control de temperatura y cadena de custodia completa." },
       { name: "Comercio minorista y e-commerce", note: "Picos de temporada, consolidación y entrega de última milla." },
@@ -170,7 +171,7 @@ export const es: Dict = {
 
   incoterms: {
     eyebrow: "Términos comerciales",
-    title: "Incoterms® 2020, en lenguaje claro.",
+    title: "Referencia de Incoterms® 2020",
     lead: "Sepa exactamente dónde pasan el costo y el riesgo del vendedor al comprador antes de firmar un contrato.",
     filterAria: "Filtrar por modo de transporte",
     all: "Todos",
@@ -194,7 +195,7 @@ export const es: Dict = {
 
   testimonials: {
     eyebrow: "Historias de clientes",
-    title: "Exportadores que dejaron de preocuparse.",
+    title: "Lo que dicen nuestros clientes",
     choose: "Elegir testimonio",
     partners: "Socios",
     pick: (n) => `Testimonio de ${n}`,
@@ -207,7 +208,7 @@ export const es: Dict = {
 
   faq: {
     eyebrow: "Preguntas frecuentes",
-    title: "Lo que más nos preguntan los exportadores.",
+    title: "Preguntas frecuentes",
     items: [
       { q: "¿Cómo se calcula el precio de la carga aérea?", a: "Se cobra por el mayor entre el peso real y el peso volumétrico. La carga voluminosa y ligera se factura por volumen: use la calculadora volumétrica de arriba antes de reservar." },
       { q: "¿Cuál es la diferencia entre FCL y LCL?", a: "FCL (contenedor completo) le da un contenedor entero para usted. LCL (carga consolidada) comparte espacio con mercancía de otros, ideal para volúmenes menores, pero añade tiempo de consolidación." },
@@ -219,7 +220,7 @@ export const es: Dict = {
   },
 
   contact: {
-    ctaTitle: "¿Listo para enviar?",
+    ctaTitle: "Solicite una cotización",
     ctaText: "Reciba una cotización gratis en un día hábil o rastree un envío que ya está en camino.",
     quote: "Solicitar cotización gratis",
     track: "Rastrear envío",

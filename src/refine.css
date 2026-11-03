@@ -1,0 +1,392 @@
+/*
+ * Professional finish for SolMar Cargo.
+ * Loaded last. Replaces decorative styling (italic serif display type, pill shapes, tilted badges,
+ * gradient accents, hover lifts) with a restrained corporate look: Archivo headings,
+ * 6–10px radii, flat colour, hairline borders.
+ */
+
+:root {
+  --display: "Archivo", system-ui, sans-serif;
+  --header-solid: #ffffff;
+}
+:root:not([data-theme="dark"]) {
+  --sand: #f3f5f6;
+  --sand-2: #e8edef;
+  --coral: #d4551f;
+  --gold: #e3a02b;
+  --shadow: 0 16px 34px -24px rgba(7, 44, 53, 0.45);
+}
+[data-theme="dark"] {
+  --header-solid: #0a191d;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--lagoon-dd);
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+}
+
+/* Buttons and form controls */
+.btn {
+  border-radius: 6px;
+  font-weight: 600;
+}
+.btn:hover {
+  transform: none;
+}
+.btn--primary,
+.btn--accent {
+  box-shadow: none;
+}
+.btn--primary:hover {
+  background: #b9440f;
+}
+.field input,
+.field select,
+.field textarea,
+.tracker__row input,
+.news input,
+.lang,
+.theme,
+.tabs button,
+.chips button,
+.seg label {
+  border-radius: 6px;
+}
+.tracker__row input {
+  border-radius: 6px;
+}
+.pill {
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+}
+
+/* Header: solid with a hairline border */
+.header {
+  background: var(--header-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid var(--line);
+}
+.header.is-scrolled {
+  box-shadow: 0 6px 18px -16px rgba(0, 0, 0, 0.5);
+}
+.brand__text {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.nav a.is-active {
+  color: var(--coral);
+}
+.nav a.is-active::after {
+  width: 100%;
+}
+[data-theme="dark"] .nav a.is-active {
+  color: var(--gold);
+}
+.nav__cta {
+  display: none;
+}
+
+/* Hero */
+.hero {
+  background: #072c35;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 4.1rem);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+}
+.hero__facts dt {
+  font-family: var(--display);
+  font-weight: 700;
+}
+
+/* Section labels: plain, no decorative rule */
+.eyebrow {
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+}
+.reveal {
+  transform: translateY(10px);
+}
+
+/* Stats bar */
+.stats__row {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+.stat b {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Services: flat cards with a quiet hover */
+.card {
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: none;
+}
+.card:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+  border-color: var(--lagoon);
+}
+.card__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: #e1eff1;
+  color: var(--lagoon);
+  margin-bottom: 18px;
+}
+[data-theme="dark"] .card__icon {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--brand);
+}
+.card h3 {
+  font-size: 1.12rem;
+}
+
+/* Tools */
+.tools {
+  border-radius: 10px;
+}
+.tabs button:not(.is-active):hover {
+  background: rgba(14, 95, 107, 0.1);
+  color: var(--ink);
+}
+.est__out {
+  border-radius: 8px;
+}
+
+/* About */
+.about__badge {
+  width: auto;
+  height: auto;
+  flex-direction: row;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  transform: none;
+  text-align: left;
+  box-shadow: none;
+  background: var(--lagoon);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+.about__badge b {
+  font-size: 2.2rem;
+}
+.why__item,
+.ind,
+.contact__item,
+.terms li {
+  border-radius: 8px;
+}
+.why__item,
+.ind {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.why__item:hover,
+.ind:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+  border-color: var(--lagoon);
+}
+.why__icon {
+  border-radius: 8px;
+  background: #e1eff1;
+  color: var(--lagoon);
+}
+[data-theme="dark"] .why__icon {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--brand);
+}
+
+/* Process: plain numerals on a rule */
+.steps li {
+  border-top: 2px solid var(--lagoon);
+}
+.steps li:nth-child(even) {
+  border-top-color: var(--lagoon);
+}
+.steps__n {
+  -webkit-text-stroke: 0;
+  color: var(--coral);
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* Reach map: flat panel with lane links and labels */
+.map {
+  background: #0a3a45;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.map__links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.map__links line {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 6;
+  animation: dash 22s linear infinite;
+  transition: stroke 0.2s;
+}
+.map__links line.is-hot {
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-dasharray: none;
+  animation: none;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+.map__label {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #cfe8eb;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.map__dot {
+  z-index: 1;
+}
+.map__dot.is-active .map__label {
+  color: var(--gold);
+  opacity: 1;
+}
+.reach__list li {
+  border-radius: 6px;
+}
+
+/* Testimonials */
+.quotes {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--coral);
+  border-radius: 8px;
+  padding: 36px 40px;
+}
+.quote blockquote {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+}
+.partners li {
+  font-family: var(--display);
+  font-weight: 700;
+}
+.partners li:hover {
+  opacity: 1;
+  color: var(--lagoon);
+}
+
+/* Tracker, quote modal */
+.tracker {
+  border-radius: 10px;
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.6);
+}
+.tracker__label {
+  font-family: var(--display);
+  font-weight: 700;
+}
+.tracker__samples button {
+  font-size: 0.74rem;
+  font-family: ui-monospace, monospace;
+}
+.modal__card {
+  border-radius: 12px;
+}
+.modal__card h3 {
+  font-family: var(--display);
+}
+
+/* CTA and footer: flat colour */
+.cta {
+  border-radius: 10px;
+  background: var(--lagoon-d);
+}
+.cta::after {
+  display: none;
+}
+.footer {
+  background: #061f26;
+}
+.footer__brand {
+  font-family: var(--display);
+  font-weight: 700;
+}
+.fab {
+  z-index: 40;
+}
+
+/* Mobile: the fixed menu panel must be positioned against the viewport, so the header
+   cannot use backdrop-filter here (it would become the containing block). */
+@media (max-width: 860px) {
+  .header {
+    background: var(--header-solid);
+  }
+  .nav {
+    bottom: 0;
+    overflow-y: auto;
+    background: var(--header-solid);
+  }
+  .nav a {
+    font-family: var(--display);
+  }
+  .nav a.is-active {
+    color: var(--coral);
+  }
+  .nav__cta {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 22px;
+    padding: 13px 24px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 620px) {
+  .about__badge {
+    width: 100%;
+  }
+  .quotes {
+    padding: 26px 22px 26px 24px;
+  }
+  .map__label {
+    font-size: 0.62rem;
+  }
+}

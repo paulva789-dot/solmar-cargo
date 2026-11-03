@@ -76,6 +76,16 @@ export function Header({ onQuote, theme, onTheme }: { onQuote: OpenQuote; theme:
               {l.label}
             </a>
           ))}
+          <button
+            type="button"
+            className="btn btn--primary nav__cta"
+            onClick={() => {
+              setOpen(false);
+              onQuote();
+            }}
+          >
+            {t.nav.quote}
+          </button>
           <a className="nav__phone" href={CONTACT.phoneHref}>
             {CONTACT.phone}
           </a>
