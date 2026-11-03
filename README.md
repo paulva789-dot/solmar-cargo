@@ -2,6 +2,8 @@
 
 A redesigned, fully responsive marketing site for a freight-forwarding company, built with **React 18 + TypeScript + Vite**. No UI framework, no runtime dependencies beyond React.
 
+> **Note:** This is an independent front-end redesign and portfolio project inspired by the public content of globaltropicalcargo.com. It is not the company's official site, uses none of its logos or photography, and is not affiliated with Global Tropical Cargo. Tracking data and estimator rates are demonstration values.
+
 ## Features
 
 | Area | What it does |
